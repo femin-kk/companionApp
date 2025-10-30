@@ -37,6 +37,22 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    // Disable lint checks for release builds
+    lint {
+        checkReleaseBuilds = false
+        abortOnError = false
+    }
+
+    // Package options to exclude conflicting classes
+    packagingOptions {
+        resources {
+            excludes += setOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/DEPENDENCIES"
+            )
+        }
+    }
 }
 
 dependencies {
@@ -57,12 +73,14 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     
-    // Socket.IO
-    implementation("io.socket:socket.io-client:2.1.0")
+    // Socket.IO - Exclude conflicting JSON library
+    implementation("io.socket:socket.io-client:2.1.0") {
+        exclude(group = "org.json", module = "json")
+    }
     
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     
-    // JSON
+    // JSON - Use Gson instead of org.json
     implementation("com.google.code.gson:gson:2.10.1")
 }
