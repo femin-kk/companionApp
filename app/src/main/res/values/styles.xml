@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- Base theme -->
+    <style name="Theme.WorkoutTV" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#00A6FF</item>
+        <item name="colorPrimaryDark">#0088CC</item>
+        <item name="colorAccent">#00A6FF</item>
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- Setup screen theme -->
+    <style name="Theme.WorkoutTV.Setup" parent="Theme.WorkoutTV">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+    <!-- Player screen theme -->
+    <style name="Theme.WorkoutTV.Player" parent="Theme.WorkoutTV">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+</resources>
