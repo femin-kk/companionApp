@@ -1,50 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Basic network permissions -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="true" />
-    <uses-feature
-        android:name="android.hardware.wifi"
-        android:required="false" />
+    <!-- Avoid blocking install on devices without touchscreen or leanback -->
+    <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.software.leanback" android:required="false" />
 
     <application
-        android:allowBackup="true"
         android:label="@string/app_name"
-        android:supportsRtl="true"
-        android:banner="@drawable/app_banner"
         android:theme="@style/Theme.WorkoutTV"
-        android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
-        tools:targetApi="31">
+        android:usesCleartextTraffic="true">
 
+        <!-- Main TV entry point -->
         <activity
             android:name=".ui.SetupActivity"
             android:exported="true"
-            android:screenOrientation="landscape"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:theme="@style/Theme.WorkoutTV.Setup">
+            android:screenOrientation="landscape">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <!-- Enables TV launcher visibility -->
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+                <!-- Optional: for mobile/phone launcher visibility -->
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!-- Secondary activity -->
         <activity
             android:name=".ui.PlayerActivity"
             android:exported="false"
-            android:screenOrientation="landscape"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:theme="@style/Theme.WorkoutTV.Player" />
-
+            android:screenOrientation="landscape" />
     </application>
 
 </manifest>
